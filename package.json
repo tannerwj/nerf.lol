@@ -1,0 +1,35 @@
+{
+  "name": "nerf.lol",
+  "version": "1.0.0",
+  "description": "Yet another front end for Riot's API",
+  "main": "index.js",
+  "scripts": {
+    "test": "tests/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tannerwj/nerf.lol.git"
+  },
+  "keywords": [
+    "lol",
+    "league",
+    "of",
+    "legends",
+    "nerf"
+  ],
+  "author": "Doug and Tanner Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tannerwj/nerf.lol/issues"
+  },
+  "homepage": "https://github.com/tannerwj/nerf.lol#readme",
+  "dependencies": {
+    "bluebird": "^3.2.2",
+    "body-parser": "^1.14.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.2",
+    "serve-favicon": "^2.3.0"
+  }
+}

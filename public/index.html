@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nerf.lol</title>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<meta name='description' content='Yet another front end for Riots API'>
+
+		<link rel='stylesheet' href='css/style.css'>
+		<link rel='stylesheet' href='css/bootstrap-light.css'>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+
+		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+		<script src='js/jquery.plugin.js'></script>
+		<script src='js/jquery.countdown.js'></script>
+		<script>
+		$(function () {
+			$('#defaultCountdown').countdown({until: new Date(2016, 3-1, 25)}); 
+		})
+		</script>
+	</head>
+
+	<body>
+
+	<div class='overlay'></div>
+
+	<div id='wrap'>
+		<div class='container'>
+			<img src='img/paperplane.png' alt='Paper Plane' class='image-align'>
+			<h1>
+				<span>We are</span><br/>
+				Nerf.<span class='yellow'>lol</span>
+			</h1>
+			<div id='defaultCountdown'></div>
+		</div>
+	</div>
+
+	</body>
+</html>

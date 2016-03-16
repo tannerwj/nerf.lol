@@ -1,39 +1,46 @@
-
 <!DOCTYPE html>
-<html>
+<html lang='en' ng-app='nerf'>
 	<head>
 		<title>Nerf.lol</title>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<meta name='description' content='Yet another front end for Riots API'>
-
-		<link rel='stylesheet' href='css/style.css'>
-		<link rel='stylesheet' href='css/bootstrap-light.css'>
-		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-
-		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-		<script src='js/jquery.plugin.js'></script>
-		<script src='js/jquery.countdown.js'></script>
-		<script>
-		$(function () {
-			$('#defaultCountdown').countdown({until: new Date(2016, 3-1, 25)}); 
-		})
-		</script>
+		<link rel='stylesheet' href='/css/bootstrap.min.css'>
+		<link rel='stylesheet' href='/css/styles.css'>
 	</head>
 
-	<body>
+	<body ngCloak>
+    <nav class='navbar navbar-default navbar-fixed-top' ng-controller='NavbarCtrl' role="navigation">
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <a href='/' class='navbar-brand'>Nerf.lol</a>
+          <button class='navbar-toggle' ng-init="navCollapsed = true" type='button' data-toggle='collapse' ng-click='navCollapsed = !navCollapsed'>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+        </div>
+        <div class='navbar-collapse collapse' uib-collapse='navCollapsed'>
+          <ul class='nav navbar-nav'>
+            <li><a href='/#/lookup'>Game Lookup</a></li>
+	          <li><a href='/#/nerfem'>Nerf 'em</a></li>
+	          <li><a href='/#/shaco-curse'>Shaco Curse</a></li>
+          </ul>
+          <ul class='nav navbar-nav navbar-right'>
+            <li><a href='/#/login'>login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-	<div class='overlay'></div>
-
-	<div id='wrap'>
-		<div class='container'>
-			<img src='img/paperplane.png' alt='Paper Plane' class='image-align'>
-			<h1>
-				<span>We are</span><br/>
-				Nerf.<span class='yellow'>lol</span>
-			</h1>
-			<div id='defaultCountdown'></div>
+    <div class='container-fluid content'>
+			<div class='row'>
+					<ng-view></ng-view>
+			</div>
 		</div>
-	</div>
 
+		<script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js'></script>
+		<script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js'></script>
+		<script src='/js/nerf.js'></script>
+		<script src='/js/ui-bootstrap-1.2.4.min.js'></script>
 	</body>
 </html>

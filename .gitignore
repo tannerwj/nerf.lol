@@ -1,2 +1,7 @@
 node_modules
+.git
 .env
+public/img/assets
+public/img/champion
+public/img/mastery
+public/img/tiers

@@ -18,9 +18,9 @@ app.disable('x-powered-by')
 app.set('port', process.env.PORT || 80)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser('BYUcs360'))
+app.use(cookieParser(process.env.SECRET || 'BYUcs360'))
 app.use(session({
-	secret: 'BYUcs360',
+	secret: process.env.SECRET || 'BYUcs360',
 	duration: 1 * 60 * 60 * 1000,
 	cookie: {
 		ephemeral: false,

@@ -10,8 +10,8 @@ var userSchema = new Schema({
 })
 
 userSchema.pre('save', function (next) {
-	if (!this.created_on){ 
-		this.created_on = new Date() 
+	if (!this.created_on){
+		this.created_on = new Date()
 	}
 	next()
 })

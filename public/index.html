@@ -6,14 +6,15 @@
 		<meta name='description' content='Yet another front end for Riots API'>
 		<link rel='stylesheet' href='/css/bootstrap.min.css'>
 		<link rel='stylesheet' href='/css/styles.css'>
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
 	</head>
 
 	<body ngCloak>
-    <nav class='navbar navbar-default navbar-fixed-top' ng-controller='NavbarCtrl' role="navigation">
+    <nav class='navbar navbar-default navbar-fixed-top' ng-controller='NavbarCtrl' role='navigation'>
       <div class='container-fluid'>
         <div class='navbar-header'>
           <a href='/' class='navbar-brand'>Nerf.lol</a>
-          <button class='navbar-toggle' ng-init="navCollapsed = true" type='button' data-toggle='collapse' ng-click='navCollapsed = !navCollapsed'>
+          <button class='navbar-toggle' ng-init='navCollapsed = true' type='button' data-toggle='collapse' ng-click='navCollapsed = !navCollapsed'>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
@@ -21,21 +22,19 @@
         </div>
         <div class='navbar-collapse collapse' uib-collapse='navCollapsed'>
           <ul class='nav navbar-nav'>
-            <li><a href='/#/lookup'>Game Lookup</a></li>
-	          <li><a href='/#/nerfem'>Nerf 'em</a></li>
-	          <li><a href='/#/shaco-curse'>Shaco Curse</a></li>
+            <li><a href='/lookup'>Game Lookup</a></li>
+	          <li><a href='/nerfem'>Nerf 'em</a></li>
+	          <li><a href='/hidden-passive'>Hidden Passive</a></li>
           </ul>
           <ul class='nav navbar-nav navbar-right'>
-            <li><a href='/#/login'>login</a></li>
+            <li><a href='/login'>login</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
     <div class='container-fluid content'>
-			<div class='row'>
-					<ng-view></ng-view>
-			</div>
+			<ng-view></ng-view>
 		</div>
 
 		<script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js'></script>

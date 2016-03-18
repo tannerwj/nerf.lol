@@ -11,6 +11,7 @@ const session = require('express-session')
 const favicon = require('serve-favicon')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const path = require('path')
 
 var app = express()
 
@@ -18,9 +19,9 @@ app.disable('x-powered-by')
 app.set('port', process.env.PORT || 80)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser('BYUcs360'))
+app.use(cookieParser(process.env.SECRET || 'BYUcs360'))
 app.use(session({
-	secret: 'BYUcs360',
+	secret: process.env.SECRET || 'BYUcs360',
 	duration: 1 * 60 * 60 * 1000,
 	cookie: {
 		ephemeral: false,
@@ -36,6 +37,10 @@ app.use(favicon(__dirname + '/public/img/favicon.ico'))
 
 app.use('/', require('./routes/main'))
 app.use(express.static(__dirname + '/public'))
+
+app.get('*', function (req, res){
+	res.sendFile('index.html', { root: path.join(__dirname, './public') })
+})
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Server started on port ' + app.get('port'))

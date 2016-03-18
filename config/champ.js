@@ -16,8 +16,22 @@ const ChampionSchema = new Schema({
   },
 	blurb: String,
 	key: String,
-	upvotes: { type: Number, default: 0 },
-	downvotes: { type: Number, default: 0 }
+	upVotes: { type: Number, default: 0 },
+	downVotes: { type: Number, default: 0 },
+  totalVotes: { type: Number, default: 0 },
+  upPercent: { type: Number, default: 0 },
+  downPercent: { type: Number, default: 0 },
+  difference: { type: Number, default: 0 }
+})
+
+ChampionSchema.post('findOneAndUpdate', function (doc){
+  doc.totalVotes = doc.upVotes + doc.downVotes
+  doc.difference = doc.upVotes - doc.downVotes
+  if(doc.totalVotes){
+    doc.upPercent = Math.round((doc.upVotes / doc.totalVotes) * 100)
+    doc.downPercent = Math.round((doc.downVotes / doc.totalVotes) * 100)
+  }
+  doc.save()
 })
 
 module.exports = mongoose.model('Champion', ChampionSchema)

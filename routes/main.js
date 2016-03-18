@@ -12,12 +12,23 @@ router.get('/', function (req, res) {
 })
 
 router.get('/data/champions', function (req, res){
-	Champ.find({}, 'name upvotes downvotes').then(function (champs){
+	Champ.find({}, 'name upPercent downPercent upVotes downVotes totalVotes difference image').sort({ difference: 1 }).then(function (champs){
 		if(!champs.length) return res.send('Run checkForChamps() first')
-		res.send(champs)
+		res.json(champs)
 	})
 })
 
+router.post('/data/upVote', function (req, res){
+	Champ.findOneAndUpdate({name: req.body.name}, {$inc: { 'upVotes' : 1 }}, function (err, doc){
+		res.sendStatus(err ? 400 : 200)
+	})
+})
+
+router.post('/data/downVote', function (req, res){
+	Champ.findOneAndUpdate({name: req.body.name}, {$inc: { 'downVotes' : 1 }}, function (err, doc){
+		res.sendStatus(err ? 400 : 200)
+	})
+})
 
 //eventually set to run every tuesday, if version is different
 //save champs again, does not allow duplicates

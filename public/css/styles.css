@@ -2,6 +2,21 @@
   margin-top: 60px
 }
 
+.changeModal{
+  cursor: pointer
+}
+.account .favorite{
+  height: 55px;
+  font-size: 2em
+}
+.account .favorite button{
+  margin-left: 10px
+}
+.account .alert{
+  margin-bottom: 0;
+  margin-top: 20px
+}
+
 .nerfem{
   margin-top: 2em;
 }

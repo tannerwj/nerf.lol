@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/tannerwj/nerf.lol#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.2.2",
     "body-parser": "^1.14.2",
     "cookie-parser": "^1.4.1",

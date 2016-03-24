@@ -1,0 +1,75 @@
+<div class='modal-header'>
+    <h3 class='modal-title pull-left'>nerf.lol {{header}}</h3>
+    <div class='changeModal pull-right' ng-click='changeModal()'>
+      {{regHeader}}
+    </div>
+</div>
+<div class='modal-body account'>
+  <form role='form' ng-submit='login()' ng-show='showLogin'>
+  	<div class='form-group'>
+  		<label for='username'>Username</label>
+  		<div class='input-group'>
+        <span class='input-group-addon'><i class='fa fa-envelope-o fa-fw'></i></span>
+  			<input type='text' class='form-control' id='username' ng-model='username' required>
+      </div>
+  	</div>
+  	<div class='form-group'>
+  		<label for='password'>Password</label>
+  		<div class='input-group'>
+        <span class='input-group-addon'><i class='fa fa-key fa-fw'></i></span>
+  			<input type='password' class='form-control' id='password' ng-model='password' required>
+      </div>
+  	</div>
+  	<button type='submit' class='btn btn-lg btn-primary btn-block'>
+  	   Log In
+  	</button>
+  </form>
+  <form role='form' ng-submit='register()' ng-show='showRegister'>
+  	<div class='form-group'>
+  		<label for='regUser'>Username</label>
+  		<div class='input-group'>
+        <span class='input-group-addon'><i class='fa fa-envelope-o fa-fw'></i></span>
+  			<input type='text' class='form-control' id='regUser' ng-model='regUser' required>
+      </div>
+  	</div>
+  	<div class='form-group'>
+  		<label for='regPass'>Password</label>
+  		<div class='input-group'>
+        <span class='input-group-addon'><i class='fa fa-key fa-fw'></i></span>
+  			<input type='password' class='form-control' id='regPass' ng-model='regPass' required>
+      </div>
+  	</div>
+  	<button type='submit' class='btn btn-lg btn-primary btn-block'>
+    	Register
+  	</button>
+  </form>
+  <div ng-show='showControls'>
+    <div class='list-group'>
+      <div class='list-group-item list favorite' ng-repeat='f in favorites'>
+        <div class='summName pull-left'>{{f.name}}</div>
+        <button type='button' class='btn btn-danger btn-sm pull-right' ng-click='deleteFav(f.name)'>x</button>
+        <button type='button' class='btn btn-success btn-sm pull-right' ng-click='hidden(f.name)'>Hidden Passive</button>
+        <button type='button' class='btn btn-success btn-sm pull-right' ng-click='lookup(f.name)'>Lookup</button>
+      </div>
+    </div>
+  	<hr>
+    <form role='form' ng-submit='addFavorite()'>
+    	<div class='form-group'>
+    		<label for='addSumm'>Add a favorite Summoner</label>
+    		<div class='input-group'>
+          <span class='input-group-addon'><i class='fa fa-envelope-o fa-fw'></i></span>
+    			<input type='text' class='form-control' id='addSumm' ng-model='summoner' placeholder='Summoner Name' required>
+        </div>
+    	</div>
+    	<button type='submit' class='btn btn-lg btn-primary btn-block' ng-click='saveFav()'>
+      	Save Favorite
+    	</button>
+    </form>
+  </div>
+  <div class="alert alert-info" role="alert" ng-show='failure'>
+    <button type='button' class='close' aria-label='Close' ng-click='failure = false'>
+      <span aria-hidden='true'>&times;</span>
+    </button>
+    {{failure}}
+  </div>
+</div>

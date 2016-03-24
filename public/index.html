@@ -21,12 +21,12 @@
         </div>
         <div class='navbar-collapse collapse' uib-collapse='navCollapsed'>
           <ul class='nav navbar-nav'>
-            <li><a href='/#/lookup'>Game Lookup</a></li>
-	          <li><a href='/#/nerfem'>Nerf 'em</a></li>
-	          <li><a href='/#/hidden-passive'>Hidden Passive</a></li>
+            <li><a href='/lookup'>Game Lookup</a></li>
+	          <li><a href='/nerfem'>Nerf 'em</a></li>
+	          <li><a href='/hidden-passive'>Hidden Passive</a></li>
           </ul>
           <ul class='nav navbar-nav navbar-right'>
-            <li><a href='/#/login'>login</a></li>
+            <li><a href='#' ng-click='popModal()'>{{modalText}}</a></li>
           </ul>
         </div>
       </div>
@@ -40,7 +40,7 @@
 
 		<script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js'></script>
 		<script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js'></script>
+		<script src='/js/ui-bootstrap.min.js'></script>
 		<script src='/js/nerf.js'></script>
-		<script src='/js/ui-bootstrap-1.2.4.min.js'></script>
 	</body>
 </html>

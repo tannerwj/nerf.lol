@@ -3,15 +3,17 @@
  */
 require('dotenv').config()
 const http = require('http')
-const mongoose = require('mongoose')
 const express = require('express')
+const passport = require('passport')
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const LocalStrategy = require('passport-local').Strategy
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const favicon = require('serve-favicon')
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+const bcrypt = require('bcrypt-nodejs')
 const path = require('path')
+const User = require('./config/User')
 
 var app = express()
 
@@ -34,6 +36,29 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(favicon(__dirname + '/public/img/favicon.ico'))
+
+passport.use(new LocalStrategy(function (username, password, done) {
+	User.find({ username: username }).then(function (user){
+		var user = user[0]
+		if(!user){ return done(null, false) }
+		bcrypt.compare(password, user.password, function (err, res) {
+			if(res){
+				console.log(user.username + ' loggin in')
+				return done(null, { username: user.username, favorites: user.favorites, admin: user.admin })
+			}
+			done(null, false)
+		})
+	})
+}))
+passport.serializeUser(function (user, done) {
+	done(null, user.username)
+})
+passport.deserializeUser(function (username, done) {
+	User.find({ username: username }).then(function (user){
+		var user = user[0]
+		done(null, { username: user.username, favorites: user.favorites, admin: user.admin })
+	})
+})
 
 app.use('/', require('./routes/main'))
 app.use(express.static(__dirname + '/public'))

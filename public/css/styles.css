@@ -1,3 +1,35 @@
 .content{
   margin-top: 60px
 }
+
+.nerfem{
+  margin-top: 2em;
+}
+.nerfem .champName{
+  margin-top: 30px;
+  font-size: 3em;
+}
+.nerfem .upPercent{
+  margin-top: 30px;
+  color: #00bc8c;
+  font-size: 3em;
+}
+.nerfem .downPercent{
+  margin-top: 30px;
+  color: #e74c3c;
+  font-size: 3em;
+}
+.nerfem .arrows{
+  margin-top: 30px;
+}
+.nerfem .fa-arrow-up {
+  cursor: pointer;
+  color: #00bc8c;
+}
+.nerfem .fa-arrow-down {
+  cursor: pointer;
+  color: #e74c3c;
+}
+.nerfem h1{
+  text-align: center;
+}

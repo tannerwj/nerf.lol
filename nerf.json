@@ -1,7 +1,7 @@
-{ 
-	"name"				: "nerf.lol",
-	"script"			: "index.js",
-	"log_date_format"  	: "YYYY-MM-DD HH:mm Z",
-	"error_file"		: "err.log",
-	"out_file"         	: "out.log"
+{
+	"name": "nerf.lol",
+	"script": "index.js",
+	"log_date_format": "YYYY-MM-DD HH:mm Z",
+	"error_file": "err.log",
+	"out_file": "out.log"
 }

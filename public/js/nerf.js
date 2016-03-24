@@ -3,7 +3,7 @@ var app = angular.module('nerf', ['ngRoute', 'ui.bootstrap'])
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider){
 
-  //$locationProvider.html5Mode({enabled:true, requireBase : false})
+  $locationProvider.html5Mode({enabled:true, requireBase : false})
 
   $routeProvider
     .when('/', {
@@ -18,9 +18,9 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       templateUrl: 'views/home.html',
       controller: 'Nerfem'
     })
-    .when('/shaco-curse', {
-      templateUrl: 'views/home.html',
-      controller: 'ShacoCurse'
+    .when('/hidden-passive', {
+      templateUrl: 'views/hidden_passive.html',
+      controller: 'HiddenPassive'
     })
 
 
@@ -38,6 +38,6 @@ app.controller('Nerfem', ['$scope', '$http', function($scope, $http){
 
 }])
 
-app.controller('ShacoCurse', ['$scope', '$http', function($scope, $http){
-
+app.controller('HiddenPassive', ['$scope', '$http', function($scope, $http){
+    
 }])

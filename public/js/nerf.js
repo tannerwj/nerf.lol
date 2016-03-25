@@ -29,7 +29,11 @@ app.controller('NavbarCtrl', ['$scope', '$http', function($scope, $http){
 }])
 
 app.controller('Lookup', ['$scope', '$http', function($scope, $http){
-
+  $http.post("/data/currentGame",{
+    name:"imaqtpie"
+  }).success(function(game){
+    console.log(game)
+  })
 }])
 
 app.controller('Nerfem', ['$scope', '$http', '$filter', function($scope, $http, $filter){

@@ -11,6 +11,18 @@ router.get('/', function (req, res) {
 	res.sendFile('index.html', { root: path.join(__dirname, '../public') })
 })
 
+router.post('/data/currentGame',function(req,res){
+	var name=req.body.name
+	lol.Summoner.getByName(name).then(function(summoner){
+		return lol.getCurrentGame(summoner.id).then(function(currentGame){
+			res.json(currentGame)
+		})
+	}).catch(function(error){
+		res.sendStatus(500).send(error)
+	})
+
+})
+
 router.get('/data/champions', function (req, res){
 	Champ.find({}, 'name upPercent downPercent upVotes downVotes totalVotes difference image').sort({ difference: 1 }).then(function (champs){
 		if(!champs.length) return res.send('Run checkForChamps() first')

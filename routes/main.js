@@ -6,7 +6,7 @@ const passport = require('passport')
 const bcrypt = require('bcrypt-nodejs')
 const db = require('../config/db.js')
 const Champ = require('../config/champ')
-const User = require('../config/User')
+const User = require('../config/user')
 
 const BCRYPT_ROUNDS = 11
 

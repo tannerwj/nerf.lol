@@ -13,7 +13,7 @@ const session = require('express-session')
 const favicon = require('serve-favicon')
 const bcrypt = require('bcrypt-nodejs')
 const path = require('path')
-const User = require('./config/User')
+const User = require('./config/user')
 
 var app = express()
 

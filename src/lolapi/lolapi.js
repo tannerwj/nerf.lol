@@ -133,12 +133,12 @@
             matchId: matchId
           }).then(function (data){
             if (!data.length){
-              League.getMatch('match:' + matchId, includeTimelineOrFunction, regionOrFunction).then(function (result){
+              League.getMatch(matchId, includeTimelineOrFunction, regionOrFunction).then(function (result){
                 var m = new Match(result)
                 m.save().catch(function (err){
                   console.log('mongo save error', err)
                 })
-                redis.set(matchId, JSON.stringify(result), function (err) {
+                redis.set('match:' + matchId, JSON.stringify(result), function (err) {
                   if (err){ console.log('save reddis error', err) }
                 })
                 return resolve(result)
@@ -146,7 +146,7 @@
                 return resolve('match does not exist')
               })
             }else{
-              redis.set(matchId, JSON.stringify(data[0]), function (err) {
+              redis.set('match:' + matchId, JSON.stringify(data[0]), function (err) {
                 if (err){ console.log('save reddis error', err) }
               })
               return resolve(data[0])
@@ -345,7 +345,7 @@
                 return resolve('summoner does not exist')
               })
             }else{
-              redis.set(name, JSON.stringify(data[0]), function (err) {
+              redis.set('summoner:' + name, JSON.stringify(data[0]), function (err) {
                 if (err){ console.log('save reddis error', err) }
               })
               return resolve(data[0])

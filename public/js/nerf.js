@@ -11,7 +11,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       controller: 'Lookup'
     })
     .when('/lookup', {
-      templateUrl: '/views/home.html',
+      templateUrl: '/views/lookup.html',
       controller: 'Lookup'
     })
     .when('/nerfem', {
@@ -19,7 +19,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       controller: 'Nerfem'
     })
     .when('/hidden-passive', {
-      templateUrl: '/views/home.html',
+      templateUrl: '/views/hidden.html',
       controller: 'HiddenPassive'
     })
 }])
@@ -154,13 +154,19 @@ app.controller('ModalInstanceCtrl', ['$scope', '$http', '$location', '$uibModalI
 
 app.controller('Lookup', ['$scope', '$http', function($scope, $http){
 
+  /*$http.post("/lookup/currentGame", {
+   name: "awerp"
+  }).success(function(game){
+    console.log(game)
+  })*/
+
 }])
 
 app.controller('Nerfem', ['$scope', '$http', '$filter', function($scope, $http, $filter){
   $scope.order_item = 'difference'
   $scope.order_reverse = true
 
-  $http.get('/data/champions').success(function (data){
+  $http.get('/nerfem/champions').success(function (data){
     $scope.champions = data
   })
 
@@ -173,7 +179,7 @@ app.controller('Nerfem', ['$scope', '$http', '$filter', function($scope, $http, 
       obj.upPercent = Math.round((obj.upVotes / obj.totalVotes) * 100)
       obj.downPercent = Math.round((obj.downVotes / obj.totalVotes) * 100)
     }
-    $http.post('/data/upVote', { name: name })
+    $http.post('/nerfem/upVote', { name: name })
   }
 
   $scope.downVote = function (name){
@@ -185,11 +191,17 @@ app.controller('Nerfem', ['$scope', '$http', '$filter', function($scope, $http, 
       obj.upPercent = Math.round((obj.upVotes / obj.totalVotes) * 100)
       obj.downPercent = Math.round((obj.downVotes / obj.totalVotes) * 100)
     }
-    $http.post('/data/downVote', { name: name })
+    $http.post('/nerfem/downVote', { name: name })
   }
 
 }])
 
 app.controller('HiddenPassive', ['$scope', '$http', function($scope, $http){
+
+    /*$http.post("/hidden/pastGames", {
+     name: "awerp"
+    }).success(function(game){
+      console.log(game)
+    })*/
 
 }])

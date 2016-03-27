@@ -13,7 +13,7 @@ const session = require('express-session')
 const favicon = require('serve-favicon')
 const bcrypt = require('bcrypt-nodejs')
 const path = require('path')
-const User = require('./config/User')
+const User = require('./config/user')
 
 var app = express()
 
@@ -60,10 +60,14 @@ passport.deserializeUser(function (username, done) {
 	})
 })
 
+app.all('/lookup/*', require('./routes/lookup'))
+app.all('/nerfem/*', require('./routes/nerfem'))
+app.all('/hidden/*', require('./routes/hidden'))
 app.use('/', require('./routes/main'))
 app.use(express.static(__dirname + '/public'))
 
 app.get('*', function (req, res){
+	console.log('catch all', req.originalUrl)
 	res.sendFile('index.html', { root: path.join(__dirname, './public') })
 })
 

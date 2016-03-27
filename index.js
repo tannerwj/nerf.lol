@@ -60,10 +60,14 @@ passport.deserializeUser(function (username, done) {
 	})
 })
 
+app.all('/lookup/*', require('./routes/lookup'))
+app.all('/nerfem/*', require('./routes/nerfem'))
+app.all('/hidden/*', require('./routes/hidden'))
 app.use('/', require('./routes/main'))
 app.use(express.static(__dirname + '/public'))
 
 app.get('*', function (req, res){
+	console.log('catch all', req.originalUrl)
 	res.sendFile('index.html', { root: path.join(__dirname, './public') })
 })
 

@@ -154,11 +154,11 @@ app.controller('ModalInstanceCtrl', ['$scope', '$http', '$location', '$uibModalI
 
 app.controller('Lookup', ['$scope', '$http', function($scope, $http){
 
-  /*$http.post("/lookup/currentGame", {
-   name: "awerp"
+  $http.post("/lookup/currentGame", {
+   name: "Dyrus"
   }).success(function(game){
     console.log(game)
-  })*/
+  })
 
 }])
 
@@ -198,10 +198,10 @@ app.controller('Nerfem', ['$scope', '$http', '$filter', function($scope, $http, 
 
 app.controller('HiddenPassive', ['$scope', '$http', function($scope, $http){
 
-    /*$http.post("/hidden/pastGames", {
-     name: "awerp"
+    $http.post("/hidden/pastGames", {
+     name: "duncan mortlock"
     }).success(function(game){
       console.log(game)
-    })*/
+    })
 
 }])

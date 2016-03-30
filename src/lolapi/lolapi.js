@@ -31,7 +31,6 @@
     const redis = redisClient(6379, 'localhost')
     const mongoose = require('mongoose')
     const Schema = mongoose.Schema
-    const db = require('../../config/db.js')
 
     const Match = mongoose.model('Match', new Schema({}, { strict: false }))
     const Summoner = mongoose.model('Summoner', new Schema({}, { strict: false }))
@@ -125,7 +124,7 @@
 
     League.getMatchCache = function (matchId, includeTimelineOrFunction, regionOrFunction) {
       return new Promise(function (resolve, reject){
-        redis.get('match:' + matchId, function (err, reply) {
+        redis.get('match:' + matchId, function (err, reply){
           if (reply){
             return resolve(JSON.parse(reply))
           }
@@ -138,7 +137,7 @@
                 m.save().catch(function (err){
                   console.log('mongo save error', err)
                 })
-                redis.set('match:' + matchId, JSON.stringify(result), function (err) {
+                redis.set('match:' + matchId, JSON.stringify(result), function (err){
                   if (err){ console.log('save reddis error', err) }
                 })
                 return resolve(result)
@@ -146,7 +145,7 @@
                 return resolve('match does not exist')
               })
             }else{
-              redis.set('match:' + matchId, JSON.stringify(data[0]), function (err) {
+              redis.set('match:' + matchId, JSON.stringify(data[0]), function (err){
                 if (err){ console.log('save reddis error', err) }
               })
               return resolve(data[0])
@@ -185,7 +184,7 @@
             if (options.rankedQueues) {
                 historyOptions += '&rankedQueues=' + options.rankedQueues.join();
             }
-            if (options.beginIndex) {
+            if (options.beginIndex === 0 || options.beginIndex) {
                 historyOptions += '&beginIndex=' + options.beginIndex;
             }
             if (options.endIndex) {
@@ -322,7 +321,7 @@
 
     League.Summoner.getByNameCache = function (name, regionOrFunction){
       return new Promise(function (resolve, reject){
-        redis.get('summoner:' + name, function (err, reply) {
+        redis.get('summoner:' + name, function (err, reply){
           if (reply){
             return resolve(JSON.parse(reply))
           }
@@ -337,7 +336,7 @@
                 s.save().catch(function (err){
                   console.log('mongo save error', err)
                 })
-                redis.set('summoner:' + name, JSON.stringify(result), function (err) {
+                redis.set('summoner:' + name, JSON.stringify(result), function (err){
                   if (err){ console.log('save reddis error', err) }
                 })
                 return resolve(result)
@@ -345,7 +344,7 @@
                 return resolve('summoner does not exist')
               })
             }else{
-              redis.set('summoner:' + name, JSON.stringify(data[0]), function (err) {
+              redis.set('summoner:' + name, JSON.stringify(data[0]), function (err){
                 if (err){ console.log('save reddis error', err) }
               })
               return resolve(data[0])

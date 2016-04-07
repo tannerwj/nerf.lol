@@ -201,7 +201,11 @@ app.controller('HiddenPassive', ['$scope', '$http', function($scope, $http){
     $http.post("/hidden/pastGames", {
      name: "duncan mortlock"
     }).success(function(game){
-      console.log(game)
+        console.log(game)
+        $scope.teammates = game.teammates
+        $scope.opponents = game.opponents
+        console.log("teammates")
+        console.log($scope.teammates)
     })
 
 }])

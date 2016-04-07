@@ -1,6 +1,39 @@
+<head>
+  <link rel="stylesheet" href="../css/hidden.css">
+</head>
 <h1>Hidden Passive</h1>
-<p>Imput a summoner name to see which champions you're best/worst with and which champions you're best/worst against</p>
-<form>
-    <input type="text" name="Summoner Name:" value=""><br><br>
-    <input type="submit" value="Submit">
-</form> 
+<p>See which champions you're best with and which champions you're best against!</p>
+<main>
+<div ng-show="teammates">
+    <div ng-repeat="value in teammates">
+        <div class='row'>
+        {{value.wins / value.gamesPlayed * 100}}% ({{value.wins}} wins out of {{value.gamesPlayed}} games)
+          <div class='col-xs-2'>
+            <img ng-src='http://ddragon.leagueoflegends.com/cdn/6.6.1/img/champion/{{value.src}}'>
+          </div>
+          <div class='col-xs-3'>
+            <div class='champName'>
+              {{value.champName}}
+            </div>
+          </div>
+        </div>
+    </div> 
+</div>
+</main>
+<aside>
+<div ng-show="opponents">
+    <div ng-repeat="value in opponents">
+        <div class='row'>
+        {{value.wins / value.gamesPlayed * 100}}% ({{value.wins}} wins out of {{value.gamesPlayed}} games)
+          <div class='col-xs-2'>
+            <img ng-src='http://ddragon.leagueoflegends.com/cdn/6.6.1/img/champion/{{value.src}}'>
+          </div>
+          <div class='col-xs-3'>
+            <div class='champName'>
+              {{value.champName}}
+            </div>
+          </div>
+        </div>
+    </div> 
+</div>
+</aside>

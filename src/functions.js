@@ -171,11 +171,12 @@ var getHiddenPassive = function (playerName){
         }
       }
     }
-
+    console.log(opponents)
+    console.log(teammates)
     //convert to array
     return {
-      opponents: Object.keys(opponents).map(function (key){ return opponents[key] }).sort(function (a, b){ return b.wins - a.wins }),
-      teammates: Object.keys(teammates).map(function (key){ return teammates[key] }).sort(function (a, b){ return b.wins - a.wins })
+      opponents: Object.keys(opponents).map(function (key){ return opponents[key] }).sort(function (a, b){ return (b.wins - b.gamesPlayed + b.wins/b.gamesPlayed) - (a.wins - a.gamesPlayed + a.wins/a.gamesPlayed) }),
+      teammates: Object.keys(teammates).map(function (key){ return teammates[key] }).sort(function (a, b){ return (b.wins - b.gamesPlayed + b.wins/b.gamesPlayed) - (a.wins - a.gamesPlayed + a.wins/a.gamesPlayed) })
     }
   }).catch(function (err){
     console.log('hidden passive error', err)

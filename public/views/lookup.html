@@ -15,5 +15,19 @@
 	</select>
 	<input type="submit" value="Submit">
 </form>
-
-
+<div class='row'>
+	<div class='match' ng-show='game'>
+		<div class='list-group players'
+			<h1>game.queueType</h1>
+			<li class='summoner' ng-repeat='p in game.participants'>
+				<div class='col-xs-2'>
+					<img ng-src={{p.championImage}}>
+				</div>
+				<div class='champion'>
+					{{p.championName}}
+				</div>
+				<div class=
+			</li>
+		</div>
+	</div>
+</div>

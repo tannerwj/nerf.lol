@@ -3,11 +3,16 @@
 </head>
 <h1>Hidden Passive</h1>
 <p>See which champions you're best with and which champions you're best against!</p>
+  <form ng-submit="submitName()" style = "margin-top30px;">
+    <input type="text" ng-model="summ_name"></input>
+    <button type="submit" style="color:black">Submit</button>
+  </form>
+
 <main>
 <div ng-show="teammates">
     <div ng-repeat="value in teammates">
         <div class='row'>
-        {{value.wins / value.gamesPlayed * 100}}% ({{value.wins}} wins out of {{value.gamesPlayed}} games)
+        {{(value.wins / value.gamesPlayed * 100).toFixed(0)}}% ({{value.wins}} wins out of {{value.gamesPlayed}} games)
           <div class='col-xs-2'>
             <img ng-src='http://ddragon.leagueoflegends.com/cdn/6.6.1/img/champion/{{value.src}}'>
           </div>
@@ -24,7 +29,7 @@
 <div ng-show="opponents">
     <div ng-repeat="value in opponents">
         <div class='row'>
-        {{value.wins / value.gamesPlayed * 100}}% ({{value.wins}} wins out of {{value.gamesPlayed}} games)
+        {{(value.wins / value.gamesPlayed * 100).toFixed(0)}}% ({{value.wins}} wins out of {{value.gamesPlayed}} games)
           <div class='col-xs-2'>
             <img ng-src='http://ddragon.leagueoflegends.com/cdn/6.6.1/img/champion/{{value.src}}'>
           </div>

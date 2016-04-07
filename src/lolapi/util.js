@@ -13,14 +13,16 @@ var https = require('https'),
         return 'https://' + region + '.' + urlType + '/' + region + api + 'api_key=' + authKey;
     },
     craftObserverUrl = function(urlType, region, api, authKey) {
-        return 'https://' + region + '.' + urlType + api +
-            'api_key=' + authKey;
+        return 'https://' + region + '.' + urlType + api + 'api_key=' + authKey;
     },
     craftStaticUrl = function(urlType, region, api, authKey) {
         return 'https://' + 'global.' + urlType + '/' + region + api + 'api_key=' + authKey;
     },
     craftStatusUrl = function(urlType, api, region) {
         return 'http://' + urlType + api + region;
+    },
+    craftMasteryUrl = function (region, api, authKey){
+        return 'https://' + region + '.api.pvp.net/championmastery/location/' + api + 'api_key=' + authKey;
     },
     checkLimits = function(callback) {
         if(limiterPer10s === undefined || limiterPer10min === undefined){
@@ -58,8 +60,10 @@ var https = require('https'),
                     try {
                         jsonObj = JSON.parse(jsonObj);
                     } catch (e) {
-                        callback(response.statusCode);
-                        return;
+                        if(response.statusCode === 204){
+                            return callback(null, {})
+                        }
+                        return callback(response.statusCode)
                     }
 
                     if (jsonObj.status && jsonObj.status.message !== 200) {
@@ -136,6 +140,7 @@ module.exports = {
     craftObserverUrl: craftObserverUrl,
     craftStatusUrl: craftStatusUrl,
     craftStaticUrl: craftStaticUrl,
+    craftMasteryUrl: craftMasteryUrl,
     getRequest: getRequest,
     makeRequest: makeRequest,
     makeStaticRequest: makeStaticRequest,

@@ -2,16 +2,59 @@ const lol = require('./lolapi/lolapi')
 const Champ = require('../config/champ')
 const Promise = require('bluebird')
 
+const queues = require('../config/consts').queues
+
 //const redisClient = require('redis').createClient
 //const redis = redisClient(6379, 'localhost')
 
 lol.init(process.env.API_KEY, 'na')
+lol.setRateLimit(10, 500)
+
+const loadingImgUrl = 'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/'
+
+var runes, masteries
 
 var getCurrentGame = function (name){
   console.log('getting current game', name)
   var name =name.toLowerCase().replace(/ /g,'')
   return lol.Summoner.getByNameCache(name).then(function (summoner){
-    return lol.getCurrentGame(summoner.sumId).catch(function (){
+    return lol.getCurrentGame(summoner.sumId).then(function (game){
+      var participants = game.participants
+
+      game.gameName = queues[game.gameQueueConfigId].name
+
+      return Promise.all([
+        Champ.find({}, 'name id').then(function (champions){
+          for(var i = 0, len = participants.length; i < len; ++i){
+            var participant = participants[i]
+            for(var j = 0, len2 = champions.length; j < len2; ++j){
+              if(champions[j].id === participant.championId){
+                var name = champions[j].name.replace(/\s/g, '')
+                participant.championImage = loadingImgUrl + name +'_0.jpg'
+                participant.championName = name
+                break
+              }
+            }
+          }
+        }),
+        Promise.map(participants, function (participant){
+          participant.runes.forEach(function (rune){
+            rune.name = runes[rune.runeId].name
+            rune.description = runes[rune.runeId].description
+          })
+          participant.masteries.forEach(function (mastery){
+            mastery.name = masteries[mastery.masteryId].name
+            mastery.description = masteries[mastery.masteryId].description
+          })
+          return lol.getChampionMastery(participant.summonerId, participant.championId).then(function (mastery){
+            participant.mastery = mastery
+          })        
+        })
+      ]).then(function (){
+        return game
+      })
+
+    }).catch(function (err){
       return {
         failed: true,
         msg: 'not in game'
@@ -178,6 +221,15 @@ var checkForChamps = function (){
     })
   })
 }
+
+lol.Static.getRuneList().then(function (data){
+  runes = data.data
+})
+
+lol.Static.getMasteryList().then(function (data){
+  masteries = data.data
+})
+
 
 module.exports = {
   getMatches: getMatches,

@@ -196,6 +196,7 @@
             summonerId + '?' + historyOptions, authKey);
         return util.makeRequest(url, 'Error getting match history: ', null, regionAndFunc.callback);
     };
+
     League.getCurrentGame = function(summonerId, regionOrFunction, callback) {
         var currentGameUrl = '/consumer/getSpectatorGameInfo',
             url,
@@ -210,12 +211,14 @@
                 return util.makeRequest(url, 'Error getting current game: ', null, regionAndFunc.callback);
             })
     };
+
     League.getFeaturedGames = function(regionOrFunction, callback) {
         var featuredUrl = '/featured',
             regionAndFunc = util.getCallbackAndRegion(regionOrFunction, region, callback),
             url = util.craftObserverUrl(observerUrl, regionAndFunc.region, featuredUrl + '?', authKey);
         return util.makeRequest(url, 'Error getting current game: ', null, regionAndFunc.callback);
     };
+
     League.getChampions = function (freeToPlay, regionOrFunction, callback) {
         var url,
             freetoPlayQuery = '',
@@ -231,6 +234,16 @@
         url = util.craftUrl(endpoint, regionAndFunc.region, championUrl + '?' + freetoPlayQuery, authKey);
         return util.makeRequest(url, 'Error getting champions: ', 'champions', regionAndFunc.callback);
     };
+
+    League.getChampionMastery = function (summonerId, championId, regionOrFunction, callback){
+        var regionAndFunc = util.getCallbackAndRegion(regionOrFunction, region, callback)
+
+        return League.getPlatformId(regionAndFunc.region)
+            .then(function(platformId) {
+                var url = util.craftMasteryUrl(region, platformId + '/player/' + summonerId + '/champion/' + championId + '?', authKey);
+                return util.makeRequest(url, 'Error getting champion mastery: ' + url + ' ', null, regionAndFunc.callback);
+            })
+    }
 
     League.getRecentGames = function (summonerId, regionOrFunction, callback) {
         var regionAndFunc = util.getCallbackAndRegion(regionOrFunction, region, callback),
@@ -380,6 +393,7 @@
 
         return util.makeRequest(url, 'Error getting summoner names using list of ids: ', null, regionAndFunc.callback);
     };
+
     League.Summoner.listSummonerDataByIDs = function (ids, regionOrFunction, callback) {
 
         if(Array.isArray(ids)){
@@ -404,7 +418,7 @@
         return util.makeRequest(url, 'Error gettin Team info: ', null, regionAndFunc.callback);
     };
 
-    League.setRateLimit  = function (limitPer10s, limitPer10min) {
+    League.setRateLimit = function (limitPer10s, limitPer10min) {
         util.setRateLimit(limitPer10s, limitPer10min);
     };
 
@@ -423,6 +437,7 @@
     League.getEndpoint = function () {
         return endpoint;
     };
+
     League.Static.getChampionList = function(options, regionOrFunction, callback) {
         var championListUrl = '/v1.2/champion?',
             regionAndFunc = util.getCallbackAndRegion(regionOrFunction, region, callback),
@@ -591,7 +606,7 @@
         return util.makeRequest(url, 'Error getting rune list : ', null, regionAndFunc.callback);
     };
 
-    League.Static.getRuneById= function(id, options, regionOrFunction, callback) {
+    League.Static.getRuneById = function(id, options, regionOrFunction, callback) {
         var runeListUrl = '/v1.2/rune/' + id + '?',
             regionAndFunc = util.getCallbackAndRegion(regionOrFunction, region, callback),
             url;

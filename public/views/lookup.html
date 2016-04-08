@@ -17,17 +17,27 @@
 </form>
 <div class='row'>
 	<div class='match' ng-show='game'>
-		<div class='list-group players'
-			<h1>game.queueType</h1>
-			<li class='summoner' ng-repeat='p in game.participants'>
-				<div class='col-xs-2'>
-					<img ng-src={{p.championImage}}>
-				</div>
-				<div class='champion'>
-					{{p.championName}}
-				</div>
-				<div class=
-			</li>
+		<div class='containter'>
+			<div class='list-group players'
+				<h1>game.queueType</h1>
+				<li class='summoner' ng-repeat='p in game.participants'>
+					<div class='col-xs-2'>
+						<img ng-src={{p.championImage}}>
+					</div>
+					<div class='champion'>
+						{{p.championName}}
+					</div>
+					<div class='mastery'>
+						{{p.mastery}}
+					</div>
+					<div class='masteries'>
+					{{p.masteries}}
+					</div>
+					<div class='runes'>
+					{{p.runes}}
+					</div>
+				</li>
+			</div>
 		</div>
 	</div>
 </div>

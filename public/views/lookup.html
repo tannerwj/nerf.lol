@@ -18,7 +18,7 @@
 
 
 <div class='row'>
-	<div class='match' ng-show='game'>
+	<div ng-show='game'>
 		<div class='containter'>
 			<div class='team1'>
 				<h1>game.queueType</h1>
@@ -28,7 +28,7 @@
 							<img ng-src={{p.championImage}}>
 						</div>
 						<div class='summonerName'>
-							{{p}.summonerName}
+							{{p.summonerName}}
 						</div>
 						<div class='champion'>
 							{{p.championName}}

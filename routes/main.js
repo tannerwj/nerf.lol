@@ -29,6 +29,7 @@ router.get('/data/champions', function (req, res){
 		if(!champs.length) return res.send('Run checkForChamps() first')
 		res.json(champs)
 	})
+})
 
 router.post('/login', function (req, res, next) {
 	passport.authenticate('local', function (err, user, info) {

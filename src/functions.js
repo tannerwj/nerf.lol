@@ -51,14 +51,15 @@ var getCurrentGame = function (name){
           return lol.getChampionMastery(participant.summonerId, participant.championId).then(function (mastery){
             participant.mastery = mastery
           })        
-        })
         var team1,team2
         for(var i=0, len=participants.length; i<len; ++i){
           var participant =participants[i]
           if(participant.teamId==100){
             team1[i]=participant
-          } else team[2]i=participant
+          } else team2[i]=participant
         }
+        })
+        
       ]).then(function (){
         return game
       })

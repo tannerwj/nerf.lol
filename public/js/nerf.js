@@ -7,7 +7,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
   $routeProvider
     .when('/', {
-      templateUrl: '/views/home.html',
+      templateUrl: '/views/lookup.html',
       controller: 'Lookup'
     })
     .when('/lookup', {

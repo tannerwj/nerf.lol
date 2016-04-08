@@ -1,6 +1,6 @@
 <h1>Game Lookup</h1>
 <form> 
-	<input type="text" name="Summoner Name" value="Summoner Name">
+	<input type="text" ng-model="SummonerName" value="Summoner Name">
 	<select name="region">
 		<option value="NA">NA</option>
 		<option value="EUW">EUW</option>
@@ -15,26 +15,73 @@
 	</select>
 	<input type="submit" value="Submit">
 </form>
+
+
 <div class='row'>
 	<div class='match' ng-show='game'>
 		<div class='containter'>
-			<div class='list-group players'
+			<div class='team1'>
 				<h1>game.queueType</h1>
-				<li class='summoner' ng-repeat='p in game.participants'>
+				<li class='summoner' ng-repeat='p in game.team1'>
 					<div class='col-xs-2'>
-						<img ng-src={{p.championImage}}>
+						<div class='image'>
+							<img ng-src={{p.championImage}}>
+						</div>
+						<div class='summonerName'>
+							{{p}.summonerName}
+						</div>
+						<div class='champion'>
+							{{p.championName}}
+						</div>
+						<div class='summonerSpells'>
+							<img ng-src={{spellOne.image}}>
+							<img ng-src={{spellTwo.image}}>
+						</div>
+						<div class='masteries' ng-repeat='mastery in p.masteries'>
+							{{mastery.name}}
+							{{master.rank}}
+						</div>
+						<div class='runes' ng-repeat='rune in p.runes'>
+							{{rune.count}}
+							{{rune.name}}
+						</div>
+						<div class='championMastery'>
+							Mastery Level: {{p.mastery.championLevel}}
+							Mastery Points {{p.mastery.championPoints}}
+							Earned Chest {{p.mastery.chestGranted}}
+						</div>
 					</div>
-					<div class='champion'>
-						{{p.championName}}
-					</div>
-					<div class='mastery'>
-						{{p.mastery}}
-					</div>
-					<div class='masteries'>
-					{{p.masteries}}
-					</div>
-					<div class='runes'>
-					{{p.runes}}
+				</li>
+			</div>
+			<div class='team2'>
+				<li class='summoner' ng-repeat='p in game.team2'>
+					<div class='col-xs-2'>
+						<div class='image'>
+							<img ng-src={{p.championImage}}>
+						</div>
+						<div class='summonerName'>
+							{{p}.summonerName}
+						</div>
+						<div class='champion'>
+							{{p.championName}}
+						</div>
+						<div class='summonerSpells'>
+							<img ng-src={{spellOne.image}}>
+							<img ng-src={{spellTwo.image}}>
+						</div>
+						<div class='masteries' ng-repeat='mastery in p.masteries'>
+							{{mastery.name}}
+							{{master.rank}}
+						</div>
+						<div class='runes' ng-repeat='rune in p.runes'>
+							{{rune.count}}
+							{{rune.name}}
+						</div>
+						<div class='championMastery'>
+							Mastery Level: {{p.mastery.championLevel}}
+							Mastery Points {{p.mastery.championPoints}}
+							Earned Chest {{p.mastery.chestGranted}}
+						</div>
 					</div>
 				</li>
 			</div>

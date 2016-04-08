@@ -213,3 +213,73 @@ exports.maps = {
 		notes: "ARAM Map"
 	}
 }
+
+exports.summonerspells = {
+	21:{
+		"name": "Barrier",
+    	"description": "Shields your champion for 115-455 (depending on champion level) for 2 seconds",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerBarrier.png",
+    	"key":21
+   	}
+   	1:{
+   		"name": "Cleanse",
+    	"description": "Removes all disables and summoner spell debuffs affecting your champion and lowers the duration of incoming disables by 65% for 3 seconds.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerBoost.png",
+    	"key": 1
+   	}
+   	14:{
+   		"name": "Ignite",
+    	"description": "Ignites target enemy champion, dealing 70-410 true damage (depending on champion level) over 5 seconds, grants you vision of the target, and reduces healing effects on them for the duration.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerDot.png",
+    	"key": 14
+   	}
+   	3:{
+   		"name": "Exhaust",
+    	"description": "Exhausts target enemy champion, reducing their Movement Speed and Attack Speed by 30%, their Armor and Magic Resist by 10, and their damage dealt by 40% for 2.5 seconds.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerExhaust.png",
+    	"key": 3
+   	}
+   	4:{
+   		"name": "Flash",
+    	"description": "Teleports your champion a short distance toward your cursor's location.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerFlash.png",
+    	"key": 4
+   	}
+   	6:{
+   		"name": "Ghost",
+    	"description": "Your champion can move through units and has 27% increased Movement Speed for 10 seconds.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerHaste.png",
+    	"key": 6
+   	}
+   	7:{
+   		"name": "Heal",
+    	"description": "Restores 90-345 Health (depending on champion level) and grants 30% Movement Speed for 1 second to you and target allied champion. This healing is halved for units recently affected by Summoner Heal.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerHeal.png",
+    	"key": 7
+   	}
+   	13:{
+   		"name": "Clarity",
+    	"description": "Restores 40% of your champion's maximum Mana. Also restores allies for 40% of their maximum Mana.",
+		"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerMana.png",
+    	"key": 13
+   	}
+   	11:{
+   		"name": "Smite",
+    	"description": "Deals 390-1000 true damage (depending on champion level) to target epic or large monster or enemy minion.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerSmite.png",
+    	"key": 11
+   	}
+   	32:{
+	   	"name": "Mark",
+    	"description": "Throw a snowball in a straight line at your enemies. If it hits an enemy, they become marked and your champion can quickly travel to the marked target as a follow up.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerSnowball.png",
+    	"key": 32
+   	}
+   	12:{
+   		"name": "Teleport",
+    	"description": "After channeling for 3.5 seconds, teleports your champion to target allied structure, minion, or ward.",
+    	"image":"http://ddragon.leagueoflegends.com/cdn/6.7.1/img/spell/SummonerTeleport.png",
+    	"key": 12
+   	}
+
+}

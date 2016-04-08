@@ -3,7 +3,7 @@ const Champ = require('../config/champ')
 const Promise = require('bluebird')
 
 const queues = require('../config/consts').queues
-
+const spells =require('../config/consts').summonerspells
 //const redisClient = require('redis').createClient
 //const redis = redisClient(6379, 'localhost')
 
@@ -46,10 +46,19 @@ var getCurrentGame = function (name){
             mastery.name = masteries[mastery.masteryId].name
             mastery.description = masteries[mastery.masteryId].description
           })
+          participant.spellOne=spells[spell1Id]
+          participant.spellTwo=spells[spell2Id]
           return lol.getChampionMastery(participant.summonerId, participant.championId).then(function (mastery){
             participant.mastery = mastery
           })        
         })
+        var team1,team2
+        for(var i=0, len=participants.length; i<len; ++i){
+          var participant =participants[i]
+          if(participant.teamId==100){
+            team1[i]=participant
+          } else team[2]i=participant
+        }
       ]).then(function (){
         return game
       })

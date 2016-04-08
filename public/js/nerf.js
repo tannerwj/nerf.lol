@@ -198,10 +198,20 @@ app.controller('Nerfem', ['$scope', '$http', '$filter', function($scope, $http, 
 
 app.controller('HiddenPassive', ['$scope', '$http', function($scope, $http){
 
+
+    $scope.submitName = function() {
+        var summ_name = $scope.summ_name
+        console.log(summ_name)
+
     $http.post("/hidden/pastGames", {
-     name: "duncan mortlock"
+     name: summ_name
     }).success(function(game){
-      console.log(game)
+        console.log(game)
+        $scope.teammates = game.teammates
+        $scope.opponents = game.opponents
+        console.log("teammates")
+        console.log($scope.teammates)
     })
+    }
 
 }])

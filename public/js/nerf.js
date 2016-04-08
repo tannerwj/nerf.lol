@@ -153,9 +153,12 @@ app.controller('ModalInstanceCtrl', ['$scope', '$http', '$location', '$uibModalI
 }])
 
 app.controller('Lookup', ['$scope', '$http', function($scope, $http){
+  $scope.submitName=function(){
+    var name =$scope.SummonerName
+  }
 
   $http.post("/lookup/currentGame", {
-   name: $scope.SummonerName
+   name: name
   }).success(function(game){
     console.log(game)
   })

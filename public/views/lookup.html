@@ -1,19 +1,7 @@
 <h1>Game Lookup</h1>
-<form> 
-	<input type="text" ng-model="SummonerName" value="Summoner Name">
-	<select name="region">
-		<option value="NA">NA</option>
-		<option value="EUW">EUW</option>
-		<option value="EUNE">EUNE</option>
-		<option value="RU">RU</option>
-		<option value="TR">TR</option>
-		<option value="BR">BR</option>
-		<option value="LAN">LAN</option>
-		<option value="LAS">LAS</option>
-		<option value="KR">KR</option>
-		<option value="OCE">OCE</option>
-	</select>
-	<input type="submit" value="Submit">
+<form ng-submit="submitName"> 
+	<input type="text" ng-model="SummonerName" value="Summoner Name"></input>
+	<input type="submit" value="Submit"></input>
 </form>
 
 

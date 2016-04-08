@@ -18,9 +18,10 @@ var getCurrentGame = function (name){
   console.log('getting current game', name)
   var name =name.toLowerCase().replace(/ /g,'')
   return lol.Summoner.getByNameCache(name).then(function (summoner){
+    console.log(summoner)
     return lol.getCurrentGame(summoner.sumId).then(function (game){
       var participants = game.participants
-
+      console.log(game)
       game.gameName = queues[game.gameQueueConfigId].name
 
       return Promise.all([

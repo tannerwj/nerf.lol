@@ -18,11 +18,11 @@ var getCurrentGame = function (name){
   console.log('getting current game', name)
   var name =name.toLowerCase().replace(/ /g,'')
   return lol.Summoner.getByNameCache(name).then(function (summoner){
-    console.log(summoner)
     return lol.getCurrentGame(summoner.sumId).then(function (game){
       var participants = game.participants
-      console.log(game)
       game.gameName = queues[game.gameQueueConfigId].name
+      game.team1 = []
+      game.team2 = []
 
       return Promise.all([
         Champ.find({}, 'name id').then(function (champions){
@@ -30,7 +30,7 @@ var getCurrentGame = function (name){
             var participant = participants[i]
             for(var j = 0, len2 = champions.length; j < len2; ++j){
               if(champions[j].id === participant.championId){
-                var name = champions[j].name.replace(/\s/g, '')
+                var name = champions[j].name.replace(/['\s]/g, '')
                 participant.championImage = loadingImgUrl + name +'_0.jpg'
                 participant.championName = name
                 break
@@ -47,20 +47,19 @@ var getCurrentGame = function (name){
             mastery.name = masteries[mastery.masteryId].name
             mastery.description = masteries[mastery.masteryId].description
           })
-          participant.spellOne=spells[spell1Id]
-          participant.spellTwo=spells[spell2Id]
+
+          participant.spellOne = spells[participant.spell1Id]
+          participant.spellTwo = spells[participant.spell2Id]
+
+          if(participant.teamId == 100){
+            game.team1.push(participant)
+          } else{
+            game.team2.push(participant)
+          }
           return lol.getChampionMastery(participant.summonerId, participant.championId).then(function (mastery){
             participant.mastery = mastery
-          })        
-        var team1,team2
-        for(var i=0, len=participants.length; i<len; ++i){
-          var participant =participants[i]
-          if(participant.teamId==100){
-            team1[i]=participant
-          } else team2[i]=participant
-        }
+          })
         })
-        
       ]).then(function (){
         return game
       })
@@ -85,7 +84,7 @@ var getMatches = function (name){
     if(summoner.failed){ return summoner }
     var options = { beginIndex: 0, endIndex: 9 }
     return lol.getMatchHistory(summoner.sumId, options).then(function (data){
-      if(data.totalGames === 0){ 
+      if(data.totalGames === 0){
         return {
           failed: true,
           msg: 'no matches'

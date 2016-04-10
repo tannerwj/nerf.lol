@@ -1,77 +1,75 @@
 <h1>Game Lookup</h1>
-<form ng-submit="submitName()"> 
+<form ng-submit="submitName()">
 	<input type="text" ng-model="SummonerName" value="Summoner Name"></input>
 	<input type="submit" value="Submit"></input>
 </form>
-
-
-<div class='row'>
-	<div ng-show='game'>
-		<div class='containter'>
-			<div class='team1'>
-				<h1>game.queueType</h1>
-				<li class='summoner' ng-repeat='p in game.team1'>
-					<div class='col-xs-2'>
-						<div class='image'>
-							<img ng-src={{p.championImage}}>
-						</div>
-						<div class='summonerName'>
-							{{p.summonerName}}
-						</div>
-						<div class='champion'>
-							{{p.championName}}
-						</div>
-						<div class='summonerSpells'>
-							<img ng-src={{spellOne.image}}>
-							<img ng-src={{spellTwo.image}}>
-						</div>
-						<div class='masteries' ng-repeat='mastery in p.masteries'>
-							{{mastery.name}}
-							{{master.rank}}
-						</div>
-						<div class='runes' ng-repeat='rune in p.runes'>
-							{{rune.count}}
-							{{rune.name}}
-						</div>
-						<div class='championMastery'>
-							Mastery Level: {{p.mastery.championLevel}}
-							Mastery Points {{p.mastery.championPoints}}
-							Earned Chest {{p.mastery.chestGranted}}
-						</div>
+<div ng-show='game'>
+	<div class='row'>
+		<div class='team1'>
+			<h1>{{game.gameName}}</h1>
+			<div class='summoner' ng-repeat='p in game.team1'>
+				<div class='col-xs-2'>
+					<div class='image'>
+						<img ng-src={{p.championImage}}>
 					</div>
-				</li>
+					<div class='summonerName'>
+						{{p.summonerName}}
+					</div>
+					<div class='champion'>
+						{{p.championName}}
+					</div>
+					<div class='summonerSpells'>
+						<img ng-src={{p.spellOne.image}}>
+						<img ng-src={{p.spellTwo.image}}>
+					</div>
+					<div class='masteries' ng-repeat='mastery in p.masteries'>
+						{{mastery.name}}
+						{{master.rank}}
+					</div>
+					<div class='runes' ng-repeat='rune in p.runes'>
+						{{rune.count}}
+						{{rune.name}}
+					</div>
+					<div class='championMastery'>
+						Mastery Level: {{p.mastery.championLevel}}
+						Mastery Points {{p.mastery.championPoints}}
+						Earned Chest {{p.mastery.chestGranted}}
+					</div>
+				</div>
 			</div>
-			<div class='team2'>
-				<li class='summoner' ng-repeat='p in game.team2'>
-					<div class='col-xs-2'>
-						<div class='image'>
-							<img ng-src={{p.championImage}}>
-						</div>
-						<div class='summonerName'>
-							{{p}.summonerName}
-						</div>
-						<div class='champion'>
-							{{p.championName}}
-						</div>
-						<div class='summonerSpells'>
-							<img ng-src={{spellOne.image}}>
-							<img ng-src={{spellTwo.image}}>
-						</div>
-						<div class='masteries' ng-repeat='mastery in p.masteries'>
-							{{mastery.name}}
-							{{master.rank}}
-						</div>
-						<div class='runes' ng-repeat='rune in p.runes'>
-							{{rune.count}}
-							{{rune.name}}
-						</div>
-						<div class='championMastery'>
-							Mastery Level: {{p.mastery.championLevel}}
-							Mastery Points {{p.mastery.championPoints}}
-							Earned Chest {{p.mastery.chestGranted}}
-						</div>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='team2'>
+			<div class='summoner' ng-repeat='p in game.team2'>
+				<div class='col-xs-2'>
+					<div class='image'>
+						<img ng-src={{p.championImage}}>
 					</div>
-				</li>
+					<div class='summonerName'>
+						{{p.summonerName}}
+					</div>
+					<div class='champion'>
+						{{p.championName}}
+					</div>
+					<div class='summonerSpells'>
+						<img ng-src={{p.spellOne.image}}>
+						<img ng-src={{p.spellTwo.image}}>
+					</div>
+					<div class='masteries' ng-repeat='mastery in p.masteries'>
+						{{mastery.name}}
+						{{master.rank}}
+					</div>
+					<div class='runes' ng-repeat='rune in p.runes'>
+						{{rune.count}}
+						{{rune.name}}
+					</div>
+					<div class='championMastery'>
+						Mastery Level: {{p.mastery.championLevel}}
+						Mastery Points {{p.mastery.championPoints}}
+						Earned Chest {{p.mastery.chestGranted}}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

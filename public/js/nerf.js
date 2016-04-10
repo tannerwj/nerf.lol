@@ -153,16 +153,17 @@ app.controller('ModalInstanceCtrl', ['$scope', '$http', '$location', '$uibModalI
 }])
 
 app.controller('Lookup', ['$scope', '$http', function($scope, $http){
-  $scope.submitName=function(){
-    var name =$scope.SummonerName
 
+  $scope.submitName = function (){
 
-  $http.post("/lookup/currentGame", {
-   name: name
-  }).success(function(game){
-    console.log(game)
-  })
+    $http.post("/lookup/currentGame", {
+     name: $scope.SummonerName
+    }).success(function(game){
+      $scope.game = game
+      console.log(game)
+    })
   }
+
 }])
 
 app.controller('Nerfem', ['$scope', '$http', '$filter', function($scope, $http, $filter){

@@ -171,7 +171,11 @@ app.controller('Lookup', ['$scope', '$http', '$routeParams', function($scope, $h
     $http.post("/lookup/currentGame", {
      name: $scope.SummonerName
     }).success(function (game){
-    $scope.disableLookup = false
+      console.log(game)
+      if(game.failure){
+        game.gameName = game.msg
+      }
+      $scope.disableLookup = false
       $scope.game = game
     })
   }

@@ -16,7 +16,7 @@ var runes, masteries
 
 var getCurrentGame = function (name){
   console.log('getting current game', name)
-  var name =name.toLowerCase().replace(/ /g,'')
+  var name = name.toLowerCase().replace(/ /g,'')
   return lol.Summoner.getByNameCache(name).then(function (summoner){
     return lol.getCurrentGame(summoner.sumId).then(function (game){
       var participants = game.participants
@@ -181,15 +181,16 @@ var getHiddenPassive = function (playerName){
         }
       }
     }
-    console.log(opponents)
-    console.log(teammates)
     //convert to array
     return {
-      opponents: Object.keys(opponents).map(function (key){ return opponents[key] }).sort(function (a, b){ return (b.wins - b.gamesPlayed + b.wins/b.gamesPlayed) - (a.wins - a.gamesPlayed + a.wins/a.gamesPlayed) }),
-      teammates: Object.keys(teammates).map(function (key){ return teammates[key] }).sort(function (a, b){ return (b.wins - b.gamesPlayed + b.wins/b.gamesPlayed) - (a.wins - a.gamesPlayed + a.wins/a.gamesPlayed) })
+      opponents: Object.keys(opponents).map(function (key){ return opponents[key] }).sort(function (a, b){
+        return (b.wins - b.gamesPlayed + b.wins/b.gamesPlayed) - (a.wins - a.gamesPlayed + a.wins/a.gamesPlayed)
+      }),
+      teammates: Object.keys(teammates).map(function (key){ return teammates[key] }).sort(function (a, b){
+        return (b.wins - b.gamesPlayed + b.wins/b.gamesPlayed) - (a.wins - a.gamesPlayed + a.wins/a.gamesPlayed)
+      })
     }
   }).catch(function (err){
-    console.log('hidden passive error', err)
     return {
       failed: true,
       msg: 'hidden passive error'
@@ -197,7 +198,7 @@ var getHiddenPassive = function (playerName){
   })
 }
 
-/*var getChampFromName = function (champName){
+var getChampFromName = function (champName){
   return new Promise(function (resolve, reject){
     redis.get('champ:' + champName, function (err, reply){
       if (reply){
@@ -217,7 +218,7 @@ var getHiddenPassive = function (playerName){
       })
     })
   })
-}*/
+}
 
 //eventually set to run every tuesday, if version is different
 //save champs again, does not allow duplicates

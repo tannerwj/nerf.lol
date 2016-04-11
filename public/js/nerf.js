@@ -1,5 +1,5 @@
 
-var app = angular.module('nerf', ['ngRoute', 'ui.bootstrap'])
+var app = angular.module('nerf', ['ngRoute', 'ui.bootstrap', 'angular-loading-bar'])
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider){
 
@@ -14,6 +14,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       templateUrl: '/views/lookup.html',
       controller: 'Lookup'
     })
+    .when('/lookup/:summoner', {
+      templateUrl: '/views/lookup.html',
+      controller: 'Lookup'
+    })
     .when('/nerfem', {
       templateUrl: '/views/nerfem.html',
       controller: 'Nerfem'
@@ -22,10 +26,14 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       templateUrl: '/views/hidden.html',
       controller: 'HiddenPassive'
     })
+    .when('/hidden-passive/:summoner', {
+      templateUrl: '/views/hidden.html',
+      controller: 'HiddenPassive'
+    })
 }])
 
 app.controller('NavbarCtrl', ['$scope', '$http', '$uibModal', '$rootScope', function($scope, $http, $uibModal, $rootScope){
-  $rootScope.modalText = 'login'
+  $rootScope.modalText = 'account'
 
   $scope.popModal = function (){
     var modalInstance = $uibModal.open({
@@ -117,12 +125,12 @@ app.controller('ModalInstanceCtrl', ['$scope', '$http', '$location', '$uibModalI
   }
 
   $scope.hidden = function (name){
-    $location.path('/hidden-passive').search('s', name)
+    $location.path('/hidden-passive/' + encodeURI(name))
     $uibModalInstance.dismiss('cancel')
   }
 
   $scope.lookup = function (name){
-    $location.path('/lookup').search('s', name)
+    $location.path('/lookup/' + encodeURI(name))
     $uibModalInstance.dismiss('cancel')
   }
 
@@ -152,16 +160,25 @@ app.controller('ModalInstanceCtrl', ['$scope', '$http', '$location', '$uibModalI
   }
 }])
 
-app.controller('Lookup', ['$scope', '$http', function($scope, $http){
+app.controller('Lookup', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+
+	$scope.disableLookup = false
+
+  var summoner = $routeParams.summoner
 
   $scope.submitName = function (){
-
+  	$scope.disableLookup = true
     $http.post("/lookup/currentGame", {
      name: $scope.SummonerName
-    }).success(function(game){
+    }).success(function (game){
+    $scope.disableLookup = false
       $scope.game = game
-      console.log(game)
     })
+  }
+
+  if(summoner){
+  	$scope.SummonerName = decodeURI(summoner)
+  	$scope.submitName()
   }
 
 }])
@@ -200,22 +217,24 @@ app.controller('Nerfem', ['$scope', '$http', '$filter', function($scope, $http, 
 
 }])
 
-app.controller('HiddenPassive', ['$scope', '$http', function($scope, $http){
+app.controller('HiddenPassive', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+	$scope.disableHidden = false
 
+	var summoner = $routeParams.summoner
 
-    $scope.submitName = function() {
-        var summ_name = $scope.summ_name
-        console.log(summ_name)
-
-    $http.post("/hidden/pastGames", {
-     name: summ_name
-    }).success(function(game){
-        console.log(game)
-        $scope.teammates = game.teammates
-        $scope.opponents = game.opponents
-        console.log("teammates")
-        console.log($scope.teammates)
-    })
+    $scope.submitName = function () {
+    	$scope.disableHidden = true
+	    $http.post("/hidden/pastGames", {
+	     name: $scope.summ_name
+	    }).success(function (game){
+	    	$scope.disableHidden = false
+	        $scope.teammates = game.teammates
+	        $scope.opponents = game.opponents
+	    })
     }
 
+	if(summoner){
+		$scope.summ_name = decodeURI(summoner)
+		$scope.submitName()
+	}
 }])
